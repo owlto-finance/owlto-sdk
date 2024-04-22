@@ -1,1 +1,1 @@
-export { Bridge, BridgeOptions } from './bridge'
+export { Bridge, BridgeOptions } from './bridge';

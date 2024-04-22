@@ -1,3 +1,3 @@
-export { request } from './net'
-export { equalFold } from './string'
-export { sleep } from './timer'
+export { request } from './net';
+export { equalFold } from './string';
+export { sleep } from './timer';
