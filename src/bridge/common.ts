@@ -10,16 +10,16 @@ export enum NetworkType {
 
 export enum BridgeStatus {
     BridgeStatusOk = 0,
-    BridgeStatusChainNotFound = 101,
-    BridgeStatusChainUnsupported = 102,
-    BridgeStatusNoPair = 103,
-    BridgeStatusValueOutOfRange = 104,
-    BridgeStatusTokenUnsupported = 105,
-    BridgeStatusBuildTxError = 106,
-    BridgeStatusTxProcessing = 201,
-    BridgeStatusTxNotFound = 202,
-    BridgeStatusTxFailed = 203,
-    BridgeStatusHttpError = 901,
+    BridgeStatusChainNotFound = -101,
+    BridgeStatusChainUnsupported = -102,
+    BridgeStatusNoPair = -103,
+    BridgeStatusValueOutOfRange = -104,
+    BridgeStatusTokenUnsupported = -105,
+    BridgeStatusBuildTxError = -106,
+    BridgeStatusTxProcessing = -201,
+    BridgeStatusTxNotFound = -202,
+    BridgeStatusTxFailed = -203,
+    BridgeStatusHttpError = -901,
 }
 
 export interface ApiStatus {
