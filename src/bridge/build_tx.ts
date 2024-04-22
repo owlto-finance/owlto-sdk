@@ -1,6 +1,6 @@
 
-import { BridgePair, NetworkType, RequestApi } from "./common"
-import { getBuildTxPath } from "./api"
+import { BridgePair, NetworkType, requestApi } from "./common"
+import { GetBuildTxPath } from "./api"
 
 
 export interface GetBuildTxRequest {
@@ -21,12 +21,9 @@ export interface GetBuildTxResponse {
 
 export class BuildTxManager {
 
-    async GetBuilTx(req: GetBuildTxRequest): Promise<GetBuildTxResponse> {
-
-        const tx = await RequestApi(getBuildTxPath, req)
-
+    async getBuilTx(req: GetBuildTxRequest): Promise<GetBuildTxResponse> {
+        const tx = await requestApi(GetBuildTxPath, req)
         return tx
     }
-
 
 }

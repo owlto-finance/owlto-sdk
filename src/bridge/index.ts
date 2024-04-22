@@ -4,7 +4,7 @@ import { FeeInfoManager, GetFeeInfoRequest } from "./fee_info";
 import { GetPairInfoRequest, PairInfoManager } from "./pair_info";
 import { ReceiptManager } from "./receipt";
 import { BuildTxManager, GetBuildTxRequest } from "./build_tx";
-import { Sleep } from "../utils";
+import { sleep } from "../utils";
 
 export interface BridgeOptions {
     channel: number
@@ -29,7 +29,7 @@ export class Bridge {
         this.receiptMgr = new ReceiptManager()
     }
 
-    private GetMappedChainName(userChainName: string) {
+    private getMappedChainName(userChainName: string) {
         if (this.options && this.options.chainNameMapping) {
             let name = this.options.chainNameMapping.get(userChainName)
             return name ? name : userChainName
@@ -38,29 +38,29 @@ export class Bridge {
         }
     }
 
-    async GetPairInfo(bridgePair: BridgePair) {
-        const result = await this.pairInfoMgr.GetPairInfo({
+    async getPairInfo(bridgePair: BridgePair) {
+        const result = await this.pairInfoMgr.getPairInfo({
             bridgePair
         })
         return result
     }
 
-    async GetAllPairInfos() {
-        const result = await this.pairInfoMgr.GetAllPairsInfos()
+    async getAllPairInfos() {
+        const result = await this.pairInfoMgr.getAllPairInfos({})
         return result
     }
 
-    async GetFeeInfo(bridgePair: BridgePair, uiValue: number) {
-        const result = await this.feeInfoMgr.GetFeeInfo({
+    async getFeeInfo(bridgePair: BridgePair, uiValue: number) {
+        const result = await this.feeInfoMgr.getFeeInfo({
             bridgePair,
             uiValue
         })
         return result
     }
 
-    async GetBuildTx(tokenName: string, fromChainName: string, toChainName: string,
+    async getBuildTx(tokenName: string, fromChainName: string, toChainName: string,
         uiValue: number, fromAddress: string, toAddress: string) {
-        const result = await this.buildTxMgr.GetBuilTx({
+        const result = await this.buildTxMgr.getBuilTx({
             bridgePair: {
                 tokenName,
                 fromChainName,
@@ -74,16 +74,24 @@ export class Bridge {
         return result
     }
 
-    async WaitReceipt(chainName: string, hash: string)  {
+    async getReceipt(chainName: string, hash: string) {
+        const result = await this.receiptMgr.getReceipt({
+            chainName: chainName,
+            hash: hash
+        })
+        return result
+    }
+
+    async waitReceipt(chainName: string, hash: string)  {
         const interval = 5000
         let timeout = interval * 20
 
         while (true) {
             timeout -= interval
-            await Sleep(interval);
+            await sleep(interval);
 
             try {
-                const result = await this.receiptMgr.GetReceipt({
+                const result = await this.receiptMgr.getReceipt({
                     chainName: chainName,
                     hash: hash
                 })

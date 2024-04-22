@@ -4,7 +4,7 @@
  * @param value2
  * @returns
  */
-export function EqualFold(value1: string, value2: string): boolean {
+export function equalFold(value1: string, value2: string): boolean {
     if (typeof value1 !== 'string' || typeof value2 !== 'string') {
       return false
     }

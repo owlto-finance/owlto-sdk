@@ -1,6 +1,6 @@
 
-import { RequestApi } from "./common"
-import { getReceiptPath } from "./api"
+import { requestApi } from "./common"
+import { GetReceiptPath } from "./api"
 
 
 export interface GetReceiptRequest {
@@ -14,10 +14,8 @@ export interface GetReceiptResponse {
 
 export class ReceiptManager {
 
-    async GetReceipt(req: GetReceiptRequest): Promise<GetReceiptResponse> {
-
-        const info = await RequestApi(getReceiptPath, req)
-
+    async getReceipt(req: GetReceiptRequest): Promise<GetReceiptResponse> {
+        const info = await requestApi(GetReceiptPath, req)
         return info
     }
 

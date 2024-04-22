@@ -11,7 +11,7 @@ async function main() {
     let bridge = new owlto.Bridge(options)
 
     try {
-        const result = await bridge.GetBuildTx(
+        const result = await bridge.getBuildTx(
             "USDC", //token name
             "BaseMainnet", //from chain name
             "ScrollMainnet",// to chain name
@@ -45,7 +45,7 @@ async function main() {
         await tx.wait(); // Wait for the transaction to be mined
         console.log("Transfer Transaction confirmed!");
 
-        const receipt = await bridge.WaitReceipt("BaseMainnet", tx.hash)
+        const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
         console.log("cross chain result ", receipt)
 
     } catch (error) {
