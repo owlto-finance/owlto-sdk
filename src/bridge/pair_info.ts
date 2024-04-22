@@ -1,6 +1,6 @@
 
-import { BridgePair, RequestApi } from "./common"
-import { getAllPairInfosPath, getPairInfoPath } from "./api"
+import { BridgePair, requestApi } from "./common"
+import { GetAllPairInfosPath, GetPairInfoPath } from "./api"
 
 
 export interface GetPairInfoRequest {
@@ -12,24 +12,24 @@ export interface GetPairInfoResponse {
     uiMaxValue: number
 }
 
+export interface GetAllPairInfosRequest {
+
+}
+
 export interface GetAllPairInfosResponse {
-    pairInfos : { bridgePair: BridgePair, uiMinValue: number, uiMaxValue: number }[]
+    pairInfos: { bridgePair: BridgePair, uiMinValue: number, uiMaxValue: number }[]
 }
 
 
 export class PairInfoManager {
 
-    async GetPairInfo(req: GetPairInfoRequest): Promise<GetPairInfoResponse> {
-
-        const info = await RequestApi(getPairInfoPath, req)
-
+    async getPairInfo(req: GetPairInfoRequest): Promise<GetPairInfoResponse> {
+        const info = await requestApi(GetPairInfoPath, req)
         return info
     }
 
-    async GetAllPairsInfos(): Promise<GetAllPairInfosResponse> {
-
-        const info = await RequestApi(getAllPairInfosPath, {})
-
+    async getAllPairInfos(req: GetAllPairInfosRequest): Promise<GetAllPairInfosResponse> {
+        const info = await requestApi(GetAllPairInfosPath, req)
         return info
     }
 

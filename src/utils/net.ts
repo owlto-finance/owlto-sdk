@@ -5,7 +5,7 @@
 //  * @param body
 //  * @returns
 //  */
-// export async function Request(url: string, body?: any) {
+// export async function request(url: string, body?: any) {
 //     try {
 //         const rsp = body ? await axios.post(url, body, {
 //             headers: {
@@ -24,7 +24,7 @@
 import * as http from 'http';
 import * as https from "https"
 
-export async function Request(url: string, body?: any, timeout: number = 30000) {
+export async function request(url: string, body?: any, timeout: number = 30000) {
     const result = await new Promise((resolve, reject) => {
         // Parse the URL to extract hostname, port, and path
         const u = new URL(url);

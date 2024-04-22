@@ -1,6 +1,6 @@
 
-import { BridgePair, RequestApi } from "./common"
-import { getFeeInfoPath } from "./api"
+import { BridgePair, requestApi } from "./common"
+import { GetFeeInfoPath } from "./api"
 
 
 export interface GetFeeInfoRequest {
@@ -14,12 +14,9 @@ export interface GetFeeInfoResponse {
 
 export class FeeInfoManager {
 
-    async GetFeeInfo(req: GetFeeInfoRequest): Promise<GetFeeInfoResponse> {
-
-        const info = await RequestApi(getFeeInfoPath, req)
-
+    async getFeeInfo(req: GetFeeInfoRequest): Promise<GetFeeInfoResponse> {
+        const info = await requestApi(GetFeeInfoPath, req)
         return info
     }
-
 
 }

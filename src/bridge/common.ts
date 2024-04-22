@@ -1,5 +1,5 @@
-import { Request } from "../utils";
-import { baseApiPath } from "./api";
+import { request } from "../utils";
+import { BaseApiPath } from "./api";
 
 export enum NetworkType {
     NetworkTypeUnknown = 0,
@@ -41,8 +41,8 @@ export class ApiError extends Error {
     }
 }
 
-export async function RequestApi(api: string, body?: any) {
-    let result: ApiResult = await Request(baseApiPath + api, body)
+export async function requestApi(api: string, body?: any) {
+    let result: ApiResult = await request(BaseApiPath + api, body)
     if (result.status.code != 0) {
         throw new ApiError(result.status);
     } else {
