@@ -1,14 +1,14 @@
 
 
-import * as owlto from "../src"
-import * as ethers from "ethers"
+import * as owlto from "../src";
+import * as ethers from "ethers";
 
 async function main() {
     const options: owlto.BridgeOptions = {
         channel: 910325  // your channel id
     }
 
-    let bridge = new owlto.Bridge(options)
+    let bridge = new owlto.Bridge(options);
 
     try {
         const result = await bridge.getBuildTx(
@@ -18,9 +18,9 @@ async function main() {
             1, // value
             "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // from address
             "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // to address
-        )
+        );
 
-        console.log(result)
+        console.log(result);
   
         const provider = ethers.getDefaultProvider("https://mainnet.base.org");
 
@@ -32,7 +32,7 @@ async function main() {
  
         // if has approve, approve first
         if (result.txs.approveBody){
-            console.log("find approve")
+            console.log("find approve");
             const tx = await wallet.sendTransaction(result.txs.approveBody as ethers.TransactionRequest);
             console.log("Approve Transaction hash:", tx.hash);
             await tx.wait(); // Wait for the transaction to be mined
@@ -46,12 +46,10 @@ async function main() {
         console.log("Transfer Transaction confirmed!");
 
         const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
-        console.log("cross chain result ", receipt)
+        console.log("cross chain result ", receipt);
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-
-
 }
-main()
+main();
