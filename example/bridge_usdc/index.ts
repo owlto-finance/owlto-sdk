@@ -1,8 +1,7 @@
 
 
-import * as owlto from "../src";
+import * as owlto from "owlto-sdk";
 import * as ethers from "ethers";
-import { NetworkType } from "../src/bridge/common";
 
 async function main() {
     const options: owlto.BridgeOptions = {
@@ -32,7 +31,7 @@ async function main() {
         const wallet = new ethers.Wallet(privateKey, provider);
 
         // type of the from chain, only ethereum is supported
-        if (result.networkType != NetworkType.NetworkTypeEthereum) {
+        if (result.networkType != owlto.NetworkType.NetworkTypeEthereum) {
             return
         }
 

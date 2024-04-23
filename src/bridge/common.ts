@@ -16,8 +16,7 @@ export enum BridgeStatus {
   BridgeStatusValueOutOfRange = -104,
   BridgeStatusTokenUnsupported = -105,
   BridgeStatusBuildTxError = -106,
-  BridgeStatusTxProcessing = -201,
-  BridgeStatusTxNotFound = -202,
+  BridgeStatusTxNotFound = -201,
   BridgeStatusHttpError = -901,
 }
 
