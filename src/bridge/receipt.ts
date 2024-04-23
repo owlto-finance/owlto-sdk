@@ -31,6 +31,6 @@ export class GetReceiptResponse {
 export class ReceiptManager {
   async getReceipt(req: GetReceiptRequest): Promise<GetReceiptResponse> {
     const info = await requestApi(GetReceiptPath, req);
-    return info;
+    return new GetReceiptResponse(info.done, info.state);
   }
 }
