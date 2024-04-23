@@ -2,6 +2,7 @@
 
 import * as owlto from "../src";
 import * as ethers from "ethers";
+import { NetworkType } from "../src/bridge/common";
 
 async function main() {
     const options: owlto.BridgeOptions = {
@@ -30,7 +31,12 @@ async function main() {
         // Create a wallet instance
         const wallet = new ethers.Wallet(privateKey, provider);
  
-        // if has approve, approve first
+        // type of the from chain, only ethereum is supported
+        if (result.networkType != NetworkType.NetworkTypeEthereum){
+            return
+        }
+
+        // if need approve, Send approve transaction first
         if (result.txs.approveBody){
             console.log("find approve");
             const tx = await wallet.sendTransaction(result.txs.approveBody as ethers.TransactionRequest);
@@ -39,7 +45,7 @@ async function main() {
             console.log("Approve Transaction confirmed!");
         }
 
-        // Send the transaction
+        // Send the transfer transaction
         const tx = await wallet.sendTransaction(result.txs.transferBody as ethers.TransactionRequest);
         console.log("Transfer Transaction hash:", tx.hash);
         await tx.wait(); // Wait for the transaction to be mined
