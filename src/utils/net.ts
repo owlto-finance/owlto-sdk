@@ -1,58 +1,61 @@
+import axios from 'axios';
+/**
+ * Wrapper for fetch
+ * @param url
+ * @param body
+ * @returns
+ */
 export async function request(url: string, body?: any) {
-  let netErr = false;
-  let errMsg = '';
-
   try {
     const rsp = body
-      ? await fetch(url, {
-          method: 'POST',
+      ? await axios.post(url, body, {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(body),
         })
-      : await fetch(url);
+      : await axios.get(url);
 
-    if (rsp.ok) {
-      return await rsp.json();
-    } else {
-      netErr = true;
-      errMsg = `http ${url} with ${JSON.stringify(body)} error, status: ${
-        rsp.status
-      }, body: ${await rsp.text()}`;
-    }
+    return await rsp.data;
   } catch (error) {
-    netErr = true;
-    errMsg = `http ${url} with ${JSON.stringify(
-      body
-    )} failed, reason: ${error}`;
-  }
-
-  if (netErr) {
-    throw new Error(errMsg);
+    throw new Error(
+      `http ${url} with ${JSON.stringify(body)} failed, ${error}`
+    );
   }
 }
 
-// import axios from 'axios';
-// /**
-//  * Wrapper for fetch
-//  * @param url
-//  * @param body
-//  * @returns
-//  */
 // export async function request(url: string, body?: any) {
-//     try {
-//         const rsp = body ? await axios.post(url, body, {
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//         }) : await axios.get(url);
+//   let netErr = false;
+//   let errMsg = '';
 
-//         return await rsp.data;
-//     } catch (error) {
-//         throw new Error(`http ${url} with ${JSON.stringify(body)} failed : ${error}`);
+//   try {
+//     const rsp = body
+//       ? await fetch(url, {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify(body),
+//         })
+//       : await fetch(url);
+
+//     if (rsp.ok) {
+//       return await rsp.json();
+//     } else {
+//       netErr = true;
+//       errMsg = `http ${url} with ${JSON.stringify(body)} error, status: ${
+//         rsp.status
+//       }, body: ${await rsp.text()}`;
 //     }
+//   } catch (error) {
+//     netErr = true;
+//     errMsg = `http ${url} with ${JSON.stringify(
+//       body
+//     )} failed, reason: ${error}`;
+//   }
 
+//   if (netErr) {
+//     throw new Error(errMsg);
+//   }
 // }
 
 // import * as http from 'http';
