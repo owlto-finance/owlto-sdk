@@ -6,7 +6,27 @@ export interface GetReceiptRequest {
   hash: string;
 }
 
-export interface GetReceiptResponse {}
+export class GetReceiptResponse {
+  done: boolean; //false: processing, true: done(may be success or error)
+  state: number; //0: success, others: error
+
+  constructor(done: boolean, state: number) {
+    this.done = done;
+    this.state = state;
+  }
+
+  processing() {
+    return !this.done;
+  }
+
+  ok() {
+    return !this.processing() && this.state === 0;
+  }
+
+  failed() {
+    return !this.processing() && this.state !== 0;
+  }
+}
 
 export class ReceiptManager {
   async getReceipt(req: GetReceiptRequest): Promise<GetReceiptResponse> {

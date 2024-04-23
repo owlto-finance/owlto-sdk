@@ -22,7 +22,7 @@ async function main() {
         );
 
         console.log(result);
-  
+
         const provider = ethers.getDefaultProvider("https://mainnet.base.org");
 
         // Your private key (make sure to keep it secure)
@@ -30,14 +30,14 @@ async function main() {
 
         // Create a wallet instance
         const wallet = new ethers.Wallet(privateKey, provider);
- 
+
         // type of the from chain, only ethereum is supported
-        if (result.networkType != NetworkType.NetworkTypeEthereum){
+        if (result.networkType != NetworkType.NetworkTypeEthereum) {
             return
         }
 
         // if need approve, Send approve transaction first
-        if (result.txs.approveBody){
+        if (result.txs.approveBody) {
             console.log("find approve");
             const tx = await wallet.sendTransaction(result.txs.approveBody as ethers.TransactionRequest);
             console.log("Approve Transaction hash:", tx.hash);
@@ -52,7 +52,12 @@ async function main() {
         console.log("Transfer Transaction confirmed!");
 
         const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
-        console.log("cross chain result ", receipt);
+        if (receipt.ok()) {
+            console.log("cross chain done");
+        } else {
+            console.log("cross chain failed:", receipt.state);
+        }
+
 
     } catch (error) {
         console.log(error);

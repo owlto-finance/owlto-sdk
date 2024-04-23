@@ -1,4 +1,4 @@
-import { ApiError, BridgePair, BridgeStatus } from './common';
+import { ApiError, BridgeStatus } from './common';
 import { FeeInfoManager } from './fee_info';
 import { PairInfoManager } from './pair_info';
 import { ReceiptManager } from './receipt';
@@ -11,11 +11,11 @@ export interface BridgeOptions {
 }
 
 export class Bridge {
-  private options: BridgeOptions;
-  private pairInfoMgr: PairInfoManager;
-  private feeInfoMgr: FeeInfoManager;
-  private buildTxMgr: BuildTxManager;
-  private receiptMgr: ReceiptManager;
+  readonly options: BridgeOptions;
+  readonly pairInfoMgr: PairInfoManager;
+  readonly feeInfoMgr: FeeInfoManager;
+  readonly buildTxMgr: BuildTxManager;
+  readonly receiptMgr: ReceiptManager;
 
   constructor(options: BridgeOptions) {
     this.options = options;
@@ -35,9 +35,19 @@ export class Bridge {
     }
   }
 
-  async getPairInfo(bridgePair: BridgePair) {
+  async getPairInfo(
+    tokenName: string,
+    fromChainName: string,
+    toChainName: string
+  ) {
+    fromChainName = this.getMappedChainName(fromChainName);
+    toChainName = this.getMappedChainName(toChainName);
     const result = await this.pairInfoMgr.getPairInfo({
-      bridgePair,
+      bridgePair: {
+        tokenName: tokenName,
+        fromChainName: fromChainName,
+        toChainName: toChainName,
+      },
     });
     return result;
   }
@@ -47,9 +57,20 @@ export class Bridge {
     return result;
   }
 
-  async getFeeInfo(bridgePair: BridgePair, uiValue: number) {
+  async getFeeInfo(
+    tokenName: string,
+    fromChainName: string,
+    toChainName: string,
+    uiValue: number
+  ) {
+    fromChainName = this.getMappedChainName(fromChainName);
+    toChainName = this.getMappedChainName(toChainName);
     const result = await this.feeInfoMgr.getFeeInfo({
-      bridgePair,
+      bridgePair: {
+        tokenName: tokenName,
+        fromChainName: fromChainName,
+        toChainName: toChainName,
+      },
       uiValue,
     });
     return result;
@@ -63,6 +84,8 @@ export class Bridge {
     fromAddress: string,
     toAddress: string
   ) {
+    fromChainName = this.getMappedChainName(fromChainName);
+    toChainName = this.getMappedChainName(toChainName);
     const result = await this.buildTxMgr.getBuilTx({
       bridgePair: {
         tokenName,
@@ -78,6 +101,7 @@ export class Bridge {
   }
 
   async getReceipt(chainName: string, hash: string) {
+    chainName = this.getMappedChainName(chainName);
     const result = await this.receiptMgr.getReceipt({
       chainName: chainName,
       hash: hash,
@@ -85,36 +109,35 @@ export class Bridge {
     return result;
   }
 
+  // wait for the bridge result
+  // return the result when bridge done(either ok or failed)
+  // throw error if the user transfered hash is not found in timeout
+  // throw err if other unexpected error happened
   async waitReceipt(chainName: string, hash: string) {
+    chainName = this.getMappedChainName(chainName);
     const interval = 5000;
-    let timeout = interval * 20;
-
+    let srcWaitTime = interval * 20;
     while (true) {
-      timeout -= interval;
       await sleep(interval);
-
+      srcWaitTime -= interval;
       try {
-        await this.receiptMgr.getReceipt({
+        const result = await this.receiptMgr.getReceipt({
           chainName: chainName,
           hash: hash,
         });
-        return true;
-      } catch (error) {
-        if (error instanceof ApiError) {
-          if (error.status.code === BridgeStatus.BridgeStatusTxProcessing) {
-            continue;
-          } else if (
-            error.status.code === BridgeStatus.BridgeStatusTxNotFound
-          ) {
-            if (timeout <= 0) {
-              throw error;
-            }
-          } else if (error.status.code === BridgeStatus.BridgeStatusTxFailed) {
-            throw error;
-          }
-        } else {
-          throw error;
+        if (result.processing()) {
+          continue;
         }
+        return result;
+      } catch (error) {
+        if (
+          error instanceof ApiError &&
+          error.status.code === BridgeStatus.BridgeStatusTxNotFound &&
+          srcWaitTime > 0
+        ) {
+          continue;
+        }
+        throw error;
       }
     }
   }
