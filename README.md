@@ -121,7 +121,7 @@ You can only bridge supported pairs
 
 ## Get fee info
 
-`bridge.getFeeInfo(tokenName: string, fromChainName: string, toChainName: string, uiValue: number) `
+1. `bridge.getFeeInfo(tokenName: string, fromChainName: string, toChainName: string, uiValue: number) `
 
 Return the fee user need to pay for a give pair and amount.
 
@@ -235,8 +235,8 @@ Return data:
         "message": ""
     },
     "data": {
-        "done": true,
-        "state": 0
+        "done": true, // false: processing, true: succeed or failed
+        "state": 0 // 0: succeed, others: failed
     }
 }
 ```
