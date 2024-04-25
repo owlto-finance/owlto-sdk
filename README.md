@@ -73,16 +73,16 @@ const result = await bridge.getBuildTx(
 ```
 Return the transactions user should send to `from chain` when bridging.
 
-### 1.Evm
-- #### result.approveBody 
+#### 1.Evm
+- ##### result.approveBody 
     The approve transaction, if any, should be sent first.
-- #### result.transferBody
+- ##### result.transferBody
     The actual transfer transaction.
 
-### 2.Starknet
+#### 2.Starknet
 TODO
 
-### 3.Solana
+#### 3.Solana
 TODO
 
 
