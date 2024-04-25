@@ -36,20 +36,23 @@ await tx.wait();
 const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
 console.log(receipt.ok())
 ```
-For more details, check the example/bridge_usdc folder
+For more details, check the example/bridge_usdc folder.
 
 ## Reference
 ### Bridge options
 Bridge can have 2 options:
-#### - 1.channel
-User's identification for revenue share (required)
-#### - 2.chainNameMapping 
-Map user's chain names to Owlto chain names (optional).
+#### 1.channel (number | required)
+User's identification for revenue share.
+#### 2.chainNameMapping (Map<string, string> | optional) 
+Map user's chain names to Owlto chain names.
+
 For example, if user named Base Mainnet as "Base", you can set chainNameMapping["Base"] = "BaseMainnet"
+
 Then you can use "Base" as chain name in every function of bridge
 
 ### Get pair info
 A pair info consists of three component: token name, from chain name, to chain name.
+
 You can only bridge supported pairs, there are two ways to find out which pairs are supported
 
 1. bridge.getPairInfo(tokenName: string, fromChainName: string, toChainName: string)
