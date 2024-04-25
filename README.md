@@ -60,6 +60,7 @@ For example, if you named Base Mainnet as "Base", you can set `chainNameMapping[
 
 Then you can use "Base" as chain name in every function of bridge.
 
+
 ## Get build tx
 ```typescript
 const result = await bridge.getBuildTx(
@@ -94,33 +95,43 @@ TODO
 #### 3.Solana
 TODO
 
+
 ## Get receipt
-Return the bridge result: `token name`, `from chain name`, `to chain name`.
 
-You can only bridge supported pairs, there are two ways to find out supported pair:
+1. `bridge.waitReceipt(chainName: string, hash: string)`
 
-1. `bridge.getPairInfo(tokenName: string, fromChainName: string, toChainName: string)`
+2. `bridge.getReceipt(chainName: string, hash: string)`
 
-2. `bridge.getAllPairInfos()`
+hash is the transfer transaction hash previously describe.
+
+waitReceipt wait for the bridge process to be done. It will throw error if the hash is not found for 1 minute
+
+getReceipt get the bridge process status, indicate it is processing, done or failed.
 
 ## Get pair info
-A pair consists of three component: `token name`, `from chain name`, `to chain name`.
-
-You can only bridge supported pairs, there are two ways to find out supported pair:
 
 1. `bridge.getPairInfo(tokenName: string, fromChainName: string, toChainName: string)`
 
 2. `bridge.getAllPairInfos()`
 
+A pair consists of three component: `token name`, `from chain name`, `to chain name`.
+
+You can only bridge supported pairs
+
+
 ## Get fee info
+
 `bridge.getFeeInfo(tokenName: string, fromChainName: string, toChainName: string, uiValue: number) `
+
 Return the fee user need to pay for a give pair and amount.
 
 For example, if user want to bridge 10 USDC from Base to Scroll.
 
 The fee may return 1.5, indicate a total value of 11.5 USDC to transfer in the transaction
 
+
 ## Http Api Example
+
 
 ### Get all pair info
 ```bash
@@ -164,6 +175,7 @@ Return data:
 }
 ```
 
+
 ### Get build tx 
 ```bash
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx
@@ -204,6 +216,7 @@ Return data:
     }
 }
 ```
+
 
 ### Get receipt
 ```bash
