@@ -126,7 +126,7 @@ The fee may return 1.5, indicate a total value of 11.5 USDC to transfer in the t
 ```markdown
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos
   -d '{
-    "category": "mainnet", //category = "mainnet" | "testnet"
+    "category": "mainnet"  #category = "mainnet" | "testnet"
   }'
 ```
 
