@@ -122,12 +122,16 @@ The fee may return 1.5, indicate a total value of 11.5 USDC to transfer in the t
 
 ## Http Api Example
 
-- Get all pair info
-`curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos -d ' {"category" : "mainnet"}'`
-category = "mainnet" | "testnet"
+### Get all pair info
+```markdown
+curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos
+  -d '{
+    "category": "mainnet", //category = "mainnet" | "testnet"
+  }'
+```
 
 Return data:
-```typescript
+```json
 {
     "status": {
         "code": 0,
@@ -160,7 +164,7 @@ Return data:
 }
 ```
 
-- Get build tx 
+### Get build tx 
 ```markdown
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx
   -d '{
@@ -177,7 +181,7 @@ curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx
 ```
 
 Return data:
-```typescript
+```json
 {
     "status": {
         "code": 0,
@@ -201,11 +205,17 @@ Return data:
 }
 ```
 
-- Get receipt
-`curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt -d ' {"chainName" : "BaseMainnet", "hash" : "0x00001fd96f18783cd72f2f3682a9cfda652b5eb4258cf5f48d5453df091e003d"}'`
+### Get receipt
+```markdown
+curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt
+  -d '{
+    "chainName": "BaseMainnet",
+    "hash": "0x00001fd96f18783cd72f2f3682a9cfda652b5eb4258cf5f48d5453df091e003d"
+  }'
+```
 
 Return data:
-```typescript
+```json
 {
     "status": {
         "code": 0,
