@@ -206,16 +206,16 @@ Return data:
 ```
 
 ### Get receipt
-{% curl %}
+```markdown
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt
   -d '{
     "chainName": "BaseMainnet",
     "hash": "0x00001fd96f18783cd72f2f3682a9cfda652b5eb4258cf5f48d5453df091e003d"
   }'
-{% endcurl %}
+```
 
 Return data:
-{% javascript %}
+```json
 {
     "status": {
         "code": 0,
@@ -226,4 +226,4 @@ Return data:
         "state": 0
     }
 }
-{% endjavascript %}
+```
