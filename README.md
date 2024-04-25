@@ -56,7 +56,7 @@ Your identification for revenue share.
 ### 2.chainNameMapping (Map<string, string> | optional) 
 Map your chain names to Owlto chain names.
 
-For example, if your named Base Mainnet as "Base", you can set `chainNameMapping["Base"] = "BaseMainnet"`.
+For example, if you named Base Mainnet as "Base", you can set `chainNameMapping["Base"] = "BaseMainnet"`.
 
 Then you can use "Base" as chain name in every function of bridge.
 
@@ -71,13 +71,20 @@ const result = await bridge.getBuildTx(
     "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // to address
 );
 ```
-Return the transactions user should send when bridging.
+Return the transactions user should send to `from chain` when bridging.
 
-### Result when from chain is evm like
+### 1.Evm
 #### tx.approveBody 
 The approve transaction, if any, should be called first.
 #### tx.transferBody
 The actual transfer transaction.
+
+### 2.Starknet
+TODO
+
+### 3.Solana
+TODO
+
 
 ## Get pair info
 A pair consists of three component: `token name`, `from chain name`, `to chain name`.
