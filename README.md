@@ -75,9 +75,9 @@ Return the transactions user should send to `from chain` when bridging.
 
 ### 1.Evm
 - #### result.approveBody 
-The approve transaction, if any, should be called first.
+    The approve transaction, if any, should be sent first.
 - #### result.transferBody
-The actual transfer transaction.
+    The actual transfer transaction.
 
 ### 2.Starknet
 TODO
