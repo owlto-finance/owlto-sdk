@@ -161,18 +161,20 @@ Return data:
 ```
 
 - Get build tx 
-`curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx \
--d ' {
+````markdown
+curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx \
+  -d '{
     "bridgePair": {
-        "tokenName": "USDC",
-        "fromChainName": "BaseMainnet",
-        "toChainName": "ScrollMainnet"
+      "tokenName": "USDC",
+      "fromChainName": "BaseMainnet",
+      "toChainName": "ScrollMainnet"
     },
     "uiValue": 1,
     "fromAddress": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
     "toAddress": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
     "channel": 12345
-}'` 
+  }'
+
 
 Return data:
 ```typescript
