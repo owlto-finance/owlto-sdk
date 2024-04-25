@@ -135,11 +135,12 @@ The fee may return 1.5, indicate a total value of 11.5 USDC to transfer in the t
 
 ### Get all pair info
 ```bash
-curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos
+curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos\
   -d '{
-    "category": "mainnet"  //category = "mainnet" | "testnet"
+    "category": "mainnet"  
   }'
 ```
+category = "mainnet" | "testnet"
 
 Return data:
 ```typescript
@@ -178,7 +179,7 @@ Return data:
 
 ### Get build tx 
 ```bash
-curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx
+curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx\
   -d '{
     "bridgePair": {
       "tokenName": "USDC",
@@ -220,7 +221,7 @@ Return data:
 
 ### Get receipt
 ```bash
-curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt
+curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt\
   -d '{
     "chainName": "BaseMainnet",
     "hash": "0x00001fd96f18783cd72f2f3682a9cfda652b5eb4258cf5f48d5453df091e003d"
