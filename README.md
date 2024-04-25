@@ -142,7 +142,7 @@ curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos
 ```
 
 Return data:
-```json
+```typescript
 {
     "status": {
         "code": 0,
@@ -193,7 +193,7 @@ curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx
 ```
 
 Return data:
-```json
+```typescript
 {
     "status": {
         "code": 0,
@@ -228,7 +228,7 @@ curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt
 ```
 
 Return data:
-```json
+```typescript
 {
     "status": {
         "code": 0,
