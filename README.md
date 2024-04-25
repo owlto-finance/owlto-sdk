@@ -6,8 +6,8 @@ Owlto-Sdk is a library used to bridge token between multiple chains
 
 For example, to bridge USDC from Base to Scroll
 ```TypeScript
-// constructor
 import * as owlto from "owlto-sdk";
+
 const options: owlto.BridgeOptions = {
     channel: 910325  // your channel id
 }
@@ -22,7 +22,6 @@ const result = await bridge.getBuildTx(
     "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // to address
 );
 
-//...
 //initialize your wallet
 //...
 
@@ -37,4 +36,18 @@ await tx.wait();
 const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
 console.log(receipt.ok())
 ```
+For more details, check the example/bridge_usdc folder
 
+## Reference
+### Bridge options
+Bridge can have 2 options:
+1. channel (required), user's identification for revenue share
+2. chainNameMapping (optional), map user's chain names to Owlto chain names, for example, if user named Base Mainnet as "Base", you can set chainNameMapping["Base"] = "BaseMainnet", then you can use "Base" as chain name in every function of bridge, the bridge internal will convert "Base" to : "BaseMainnet"  which is Owlto's internal name for Base Mainnet, without this mapping, you need to write "BaseMainnet" as chain name
+
+### Get pair info
+A pair info consists of three component: token name, from chain name, to chain name.
+You can only bridge supported pairs, there are two ways to find out which pairs are supported
+
+1. bridge.getPairInfo(tokenName: string, fromChainName: string, toChainName: string)
+
+2. bridge.getAllPairInfos()
