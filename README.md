@@ -42,7 +42,9 @@ For more details, check the example/bridge_usdc folder
 ### Bridge options
 Bridge can have 2 options:
 1. channel (required), user's identification for revenue share
-2. chainNameMapping (optional), map user's chain names to Owlto chain names, for example, if user named Base Mainnet as "Base", you can set chainNameMapping["Base"] = "BaseMainnet", then you can use "Base" as chain name in every function of bridge, the bridge internal will convert "Base" to : "BaseMainnet"  which is Owlto's internal name for Base Mainnet, without this mapping, you need to write "BaseMainnet" as chain name
+2. chainNameMapping (optional), map user's chain names to Owlto chain names
+For example, if user named Base Mainnet as "Base", you can set chainNameMapping["Base"] = "BaseMainnet"
+Then you can use "Base" as chain name in every function of bridge
 
 ### Get pair info
 A pair info consists of three component: token name, from chain name, to chain name.
