@@ -123,11 +123,10 @@ The fee may return 1.5, indicate a total value of 11.5 USDC to transfer in the t
 ## Http Api Example
 
 ### Get all pair info
-```shell
+```bash
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos
   -d '{
-    # category = "mainnet" | "testnet"
-    "category": "mainnet"  
+    "category": "mainnet"  //category = "mainnet" | "testnet"
   }'
 ```
 
@@ -166,7 +165,7 @@ Return data:
 ```
 
 ### Get build tx 
-```markdown
+```bash
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx
   -d '{
     "bridgePair": {
@@ -207,7 +206,7 @@ Return data:
 ```
 
 ### Get receipt
-```markdown
+```bash
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt
   -d '{
     "chainName": "BaseMainnet",
