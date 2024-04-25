@@ -142,6 +142,7 @@ curl -X POST https://owlto.finance/api/bridge_api/v1/get_all_pair_infos\
 ```
 category = "mainnet" | "testnet"
 
+
 Return data:
 ```typescript
 {
