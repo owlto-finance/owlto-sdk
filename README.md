@@ -161,8 +161,8 @@ Return data:
 ```
 
 - Get build tx 
-````markdown
-curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx \
+```markdown
+curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx
   -d '{
     "bridgePair": {
       "tokenName": "USDC",
@@ -174,7 +174,7 @@ curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx \
     "toAddress": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
     "channel": 12345
   }'
-
+```
 
 Return data:
 ```typescript
