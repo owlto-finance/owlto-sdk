@@ -106,7 +106,7 @@ hash is the transfer transaction hash previously describe.
 
 waitReceipt wait for the bridge process to be done. It will throw error if the hash is not found for 1 minute
 
-getReceipt get the bridge process status, indicate it is processing, done or failed.
+getReceipt get the bridge process status (processing, successful or failed).
 
 ## Get pair info
 
@@ -123,7 +123,7 @@ You can only bridge supported pairs
 
 1. `bridge.getFeeInfo(tokenName: string, fromChainName: string, toChainName: string, uiValue: number) `
 
-Return the fee user need to pay for a give pair and amount.
+Return the fee user need to pay for a given pair and amount.
 
 For example, if user want to bridge 10 USDC from Base to Scroll.
 
@@ -235,8 +235,8 @@ Return data:
         "message": ""
     },
     "data": {
-        "done": true, // false: processing, true: succeed or failed
-        "state": 0 // 0: succeed, others: failed
+        "done": true, // false: processing, true: successful or failed
+        "state": 0 // 0: successful, others: failed
     }
 }
 ```
