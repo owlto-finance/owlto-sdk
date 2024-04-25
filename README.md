@@ -233,7 +233,7 @@ Return data:
 ```typescript
 {
     "status": {
-        "code": 0,
+        "code": 0, // -201: the transfer tx hash is not found on chain
         "message": ""
     },
     "data": {
