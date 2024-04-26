@@ -100,21 +100,18 @@ export class Bridge {
     return result;
   }
 
-  async getReceipt(chainName: string, hash: string) {
-    chainName = this.getMappedChainName(chainName);
+  async getReceipt(fromChainName: string, fromChainHash: string) {
+    fromChainName = this.getMappedChainName(fromChainName);
     const result = await this.receiptMgr.getReceipt({
-      chainName: chainName,
-      hash: hash,
+      fromChainName: fromChainName,
+      fromChainHash: fromChainHash,
     });
     return result;
   }
 
   // wait for the bridge result
-  // return the result when bridge done(either ok or failed)
-  // throw error if the user transfered hash is not found in timeout
-  // throw err if other unexpected error happened
-  async waitReceipt(chainName: string, hash: string) {
-    chainName = this.getMappedChainName(chainName);
+  async waitReceipt(fromChainName: string, fromChainHash: string) {
+    fromChainName = this.getMappedChainName(fromChainName);
     const interval = 5000;
     let srcWaitTime = interval * 20;
     while (true) {
@@ -122,21 +119,23 @@ export class Bridge {
       srcWaitTime -= interval;
       try {
         const result = await this.receiptMgr.getReceipt({
-          chainName: chainName,
-          hash: hash,
+          fromChainName: fromChainName,
+          fromChainHash: fromChainHash,
         });
-        if (result.processing()) {
-          continue;
-        }
         return result;
       } catch (error) {
-        if (
-          error instanceof ApiError &&
-          error.status.code === BridgeStatus.BridgeStatusTxNotFound &&
-          srcWaitTime > 0
-        ) {
-          continue;
+        if ( error instanceof ApiError) {
+          if(error.status.code === BridgeStatus.BridgeStatusTxNotFound &&
+            srcWaitTime > 0
+          ) {
+            continue;
+          }
+
+          if (error.status.code === BridgeStatus.BridgeStatusBridgeProcessing){
+            continue
+          }
         }
+          
         throw error;
       }
     }
