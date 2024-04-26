@@ -44,7 +44,7 @@ const tx = await wallet.sendTransaction(result.txs.transferBody as ethers.Transa
 await tx.wait(); 
 
 const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
-console.log(receipt.ok())
+console.log(receipt)
 ```
 For more details, check the example/bridge_usdc folder.
 
