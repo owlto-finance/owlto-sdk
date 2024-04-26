@@ -110,7 +110,7 @@ getReceipt get the bridge process status (processing, successful or failed).
 
 ## Get pair info
 
-1. `bridge.getPairInfo(token_name: string, from_chain_name: string, to_chain_name: string)`
+1. `bridge.getPairInfo(tokenName: string, fromChainName: string, toChainName: string)`
 
 2. `bridge.getAllPairInfos()`
 
@@ -121,7 +121,7 @@ You can only bridge supported pairs
 
 ## Get fee info
 
-1. `bridge.getFeeInfo(token_name: string, from_chain_name: string, to_chain_name: string, uiValue: number) `
+1. `bridge.getFeeInfo(tokenName: string, fromChainName: string, toChainName: string, uiValue: number) `
 
 Return the fee user need to pay for a given pair and amount.
 
@@ -185,9 +185,9 @@ curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx\
       "from_chain_name": "BaseMainnet",
       "to_chain_name": "ScrollMainnet"
     },
-    "uiValue": 1,
-    "fromAddress": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
-    "toAddress": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
+    "ui_value": 1,
+    "from_address": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
+    "to_address": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
     "channel": 12345
   }'
 ```
