@@ -6,18 +6,21 @@ export enum NetworkType {
   NetworkTypeEthereum = 1,
   NetworkTypeStarknet = 2,
   NetworkTypeSolana = 3,
+  NetworkTypeBitcoin = 4,
 }
 
 export enum BridgeStatus {
   BridgeStatusOk = 0,
-  BridgeStatusChainNotFound = -101,
-  BridgeStatusChainUnsupported = -102,
-  BridgeStatusNoPair = -103,
-  BridgeStatusValueOutOfRange = -104,
-  BridgeStatusTokenUnsupported = -105,
-  BridgeStatusBuildTxError = -106,
-  BridgeStatusTxNotFound = -201,
-  BridgeStatusHttpError = -901,
+  BridgeStatusChainNotFound = 901,
+  BridgeStatusChainUnsupported = 902,
+  BridgeStatusNoPair = 903,
+  BridgeStatusValueOutOfRange = 904,
+  BridgeStatusTokenUnsupported = 905,
+  BridgeStatusBuildTxError = 906,
+  BridgeStatusTxNotFound = 907,
+  BridgeStatusBridgeProcessing = 908,
+  BridgeStatusBridgeFailed = 909,
+  BridgeStatusHttpError = 999,
 }
 
 export interface ApiStatus {

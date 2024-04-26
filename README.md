@@ -98,15 +98,15 @@ TODO
 
 ## Get receipt
 
-1. `bridge.waitReceipt(chainName: string, hash: string)`
+1. `bridge.waitReceipt(fromChainName: string, fromChainHash: string)`
 
-2. `bridge.getReceipt(chainName: string, hash: string)`
+2. `bridge.getReceipt(fromChainName: string, fromChainHash: string)`
 
 hash is the transfer transaction hash previously describe.
 
-waitReceipt wait for the bridge process to be done. It will throw error if the hash is not found for 1 minute
+waitReceipt wait for the bridge process to be done. Throw error if the hash is not found for 1 minute or failed
 
-getReceipt get the bridge process status (processing, successful or failed).
+getReceipt get the bridge process status, Throw error if hash is not found, bridge in progress or failed.
 
 ## Get pair info
 
@@ -132,6 +132,7 @@ The fee may return 1.5, indicate a total value of 11.5 USDC to transfer in the t
 
 ## Http Api Example
 
+For detail api documentation, please visit: https://owlto.finance/bridge_api/v1/swagger/index.html .
 
 ### Get all pair info
 ```bash
@@ -196,7 +197,7 @@ Return data:
 ```typescript
 {
     "status": {
-        "code": 0, // -101, -102, -103, -105: pair not supported, -104: value out of range, -106: build tx error
+        "code": 0,
         "message": ""
     },
     "data": {
@@ -230,8 +231,8 @@ Return data:
 ```bash
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt\
   -d '{
-    "chain_name": "BaseMainnet",
-    "hash": "0x00001fd96f18783cd72f2f3682a9cfda652b5eb4258cf5f48d5453df091e003d"
+    "from_chain_name": "BaseMainnet",
+    "from_chain_hash": "0x00001fd96f18783cd72f2f3682a9cfda652b5eb4258cf5f48d5453df091e003d"
   }'
 ```
 
@@ -239,12 +240,11 @@ Return data:
 ```typescript
 {
     "status": {
-        "code": 0, // -201: the transfer tx hash is not found on chain
+        "code": 0, 
         "message": ""
     },
     "data": {
-        "done": true, // false: processing, true: successful or failed
-        "state": 0 // 0: successful, others: failed
+        "to_chain_hash": "0xcc63950c44862d697074dd944f0d74c27280d8880be1f248b9ceb61efd0e958d"
     }
 }
 ```

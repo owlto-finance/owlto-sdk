@@ -51,12 +51,7 @@ async function main() {
         console.log("Transfer Transaction confirmed!");
 
         const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
-        if (receipt.ok()) {
-            console.log("cross chain done");
-        } else {
-            console.log("cross chain failed:", receipt.state);
-        }
-
+        console.log("cross chain done : ", receipt);
 
     } catch (error) {
         console.log(error);
