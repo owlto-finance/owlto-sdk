@@ -7,7 +7,8 @@ export interface GetFeeInfoRequest {
 }
 
 export interface GetFeeInfoResponse {
-  uiFee: number;
+  uiGasFee: number;
+  uiBridgeFee: number;
 }
 
 export class FeeInfoManager {
