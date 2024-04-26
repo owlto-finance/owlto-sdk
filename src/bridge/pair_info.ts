@@ -10,7 +10,9 @@ export interface GetPairInfoResponse {
   uiMaxValue: number;
 }
 
-export interface GetAllPairInfosRequest {}
+export interface GetAllPairInfosRequest {
+  category: string;
+}
 
 export interface GetAllPairInfosResponse {
   pairInfos: {

@@ -52,8 +52,10 @@ export class Bridge {
     return result;
   }
 
-  async getAllPairInfos() {
-    const result = await this.pairInfoMgr.getAllPairInfos({});
+  async getAllPairInfos(category?: string) {
+    const result = await this.pairInfoMgr.getAllPairInfos({
+      category: category ? category : ""
+    });
     return result;
   }
 
@@ -124,18 +126,18 @@ export class Bridge {
         });
         return result;
       } catch (error) {
-        if ( error instanceof ApiError) {
-          if(error.status.code === BridgeStatus.BridgeStatusTxNotFound &&
+        if (error instanceof ApiError) {
+          if (error.status.code === BridgeStatus.BridgeStatusTxNotFound &&
             srcWaitTime > 0
           ) {
             continue;
           }
 
-          if (error.status.code === BridgeStatus.BridgeStatusBridgeProcessing){
+          if (error.status.code === BridgeStatus.BridgeStatusBridgeProcessing) {
             continue
           }
         }
-          
+
         throw error;
       }
     }
