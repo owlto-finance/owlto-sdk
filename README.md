@@ -110,7 +110,7 @@ getReceipt get the bridge process status (processing, successful or failed).
 
 ## Get pair info
 
-1. `bridge.getPairInfo(tokenName: string, fromChainName: string, toChainName: string)`
+1. `bridge.getPairInfo(token_name: string, from_chain_name: string, to_chain_name: string)`
 
 2. `bridge.getAllPairInfos()`
 
@@ -121,7 +121,7 @@ You can only bridge supported pairs
 
 ## Get fee info
 
-1. `bridge.getFeeInfo(tokenName: string, fromChainName: string, toChainName: string, uiValue: number) `
+1. `bridge.getFeeInfo(token_name: string, from_chain_name: string, to_chain_name: string, uiValue: number) `
 
 Return the fee user need to pay for a given pair and amount.
 
@@ -151,26 +151,24 @@ Return data:
         "message": ""
     },
     "data": {
-        "pairInfos": [
+        "pair_infos": [
             {
-                "bridgePair": {
-                    "tokenName": "BNB",
-                    "fromChainName": "BnbMainnet",
-                    "toChainName": "OpbnbMainnet"
+                "bridge_pair": {
+                    "token_name": "BNB",
+                    "from_chain_name": "BnbMainnet",
+                    "to_chain_name": "OpbnbMainnet"
                 },
-                "uiMinValue": 0.0001,
-                "uiMaxValue": 1,
-                "bridgeFeeRatio": 0
+                "ui_min_value": 0.0001,
+                "ui_max_value": 1,
             },
             {
-                "bridgePair": {
-                    "tokenName": "BNB",
-                    "fromChainName": "OpbnbMainnet",
-                    "toChainName": "BnbMainnet"
+                "bridge_pair": {
+                    "token_name": "BNB",
+                    "from_chain_name": "OpbnbMainnet",
+                    "to_chain_name": "BnbMainnet"
                 },
-                "uiMinValue": 0.0001,
-                "uiMaxValue": 1,
-                "bridgeFeeRatio": 0
+                "ui_min_value": 0.0001,
+                "ui_max_value": 1,
             }
         ]
     }
@@ -182,10 +180,10 @@ Return data:
 ```bash
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_build_tx\
   -d '{
-    "bridgePair": {
-      "tokenName": "USDC",
-      "fromChainName": "BaseMainnet",
-      "toChainName": "ScrollMainnet"
+    "bridge_pair": {
+      "token_name": "USDC",
+      "from_chain_name": "BaseMainnet",
+      "to_chain_name": "ScrollMainnet"
     },
     "uiValue": 1,
     "fromAddress": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
@@ -203,12 +201,12 @@ Return data:
     },
     "data": {
         "uiFee": 1.5,
-        "uiMinValue": 1,
-        "uiMaxValue": 300,
-        "networkType": 1,
+        "ui_min_value": 1,
+        "ui_max_value": 300,
+        "network_type": 1,
         "txs": {
-            "approveBody": null,
-            "transferBody": {
+            "approve_body": null,
+            "transfer_body": {
                 "data": "0xfc18063800000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000833589fcd6edb6e08f4c7c32d4f71b54bda029130000000000000000000000005e809a85aa182a9921edd10a4163745bb3e3628400000000000000000000000000000000000000000000000000000000002625a000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000003039000000000000000000000000000000000000000000000000000000000000002a30786135453536443435354246323437433437354437353237323142613335413063383544663831446300000000000000000000000000000000000000000000",
                 "from": "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc",
                 "to": "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7",
@@ -224,7 +222,7 @@ Return data:
 ```bash
 curl -X POST https://owlto.finance/api/bridge_api/v1/get_receipt\
   -d '{
-    "chainName": "BaseMainnet",
+    "chain_name": "BaseMainnet",
     "hash": "0x00001fd96f18783cd72f2f3682a9cfda652b5eb4258cf5f48d5453df091e003d"
   }'
 ```
