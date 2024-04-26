@@ -196,7 +196,7 @@ Return data:
 ```typescript
 {
     "status": {
-        "code": 0,
+        "code": 0, // -101, -102, -103, -105: pair not supported, -104: value out of range, -106: build tx error
         "message": ""
     },
     "data": {
@@ -205,10 +205,10 @@ Return data:
             "from_chain_name": "BaseMainnet",
             "to_chain_name": "ScrollMainnet"
         },
-        "ui_input_value": 1,
-        "ui_send_value": 2.5,
-        "ui_receive_value": 1,
-        "ui_gas_fee": 1.5,
+        "ui_input_value": 1, // the request value
+        "ui_send_value": 2.5, // the value actually send to "from chain"
+        "ui_receive_value": 1, // the value user will actually receive
+        "ui_gas_fee": 1.5, // the value charged for gas fee
         "ui_min_value": 1,
         "ui_max_value": 300,
         "network_type": 1,
