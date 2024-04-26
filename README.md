@@ -200,7 +200,7 @@ Return data:
         "message": ""
     },
     "data": {
-        "uiFee": 1.5,
+        "ui_fee": 1.5,
         "ui_min_value": 1,
         "ui_max_value": 300,
         "network_type": 1,
