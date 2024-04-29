@@ -43,11 +43,9 @@ export class Bridge {
     fromChainName = this.getMappedChainName(fromChainName);
     toChainName = this.getMappedChainName(toChainName);
     const result = await this.pairInfoMgr.getPairInfo({
-      bridgePair: {
-        tokenName: tokenName,
-        fromChainName: fromChainName,
-        toChainName: toChainName,
-      },
+      tokenName: tokenName,
+      fromChainName: fromChainName,
+      toChainName: toChainName,
     });
     return result;
   }
@@ -68,11 +66,10 @@ export class Bridge {
     fromChainName = this.getMappedChainName(fromChainName);
     toChainName = this.getMappedChainName(toChainName);
     const result = await this.feeInfoMgr.getFeeInfo({
-      bridgePair: {
-        tokenName: tokenName,
-        fromChainName: fromChainName,
-        toChainName: toChainName,
-      },
+      tokenName: tokenName,
+      fromChainName: fromChainName,
+      toChainName: toChainName,
+
       uiValue,
     });
     return result;
@@ -89,11 +86,10 @@ export class Bridge {
     fromChainName = this.getMappedChainName(fromChainName);
     toChainName = this.getMappedChainName(toChainName);
     const result = await this.buildTxMgr.getBuilTx({
-      bridgePair: {
-        tokenName,
-        fromChainName,
-        toChainName,
-      },
+      tokenName,
+      fromChainName,
+      toChainName,
+
       uiValue,
       fromAddress,
       toAddress,

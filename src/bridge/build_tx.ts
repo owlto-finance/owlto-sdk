@@ -1,8 +1,10 @@
-import { BridgePair, NetworkType, requestApi } from './common';
+import { NetworkType, requestApi } from './common';
 import { GetBuildTxPath } from './api';
 
 export interface GetBuildTxRequest {
-  bridgePair: BridgePair;
+  tokenName: string;
+  fromChainName: string;
+  toChainName: string;
   uiValue: number;
   fromAddress: string;
   toAddress: string;
@@ -10,7 +12,9 @@ export interface GetBuildTxRequest {
 }
 
 export interface GetBuildTxResponse {
-  bridgePair: BridgePair;
+  tokenName: string;
+  fromChainName: string;
+  toChainName: string;
   uiInputValue: number;
   uiSendValue: number;
   uiReceiveValue: number;

@@ -1,8 +1,10 @@
-import { BridgePair, requestApi } from './common';
+import { requestApi } from './common';
 import { GetFeeInfoPath } from './api';
 
 export interface GetFeeInfoRequest {
-  bridgePair: BridgePair;
+  tokenName: string;
+  fromChainName: string;
+  toChainName: string;
   uiValue: number;
 }
 
