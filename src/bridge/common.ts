@@ -1,5 +1,6 @@
 import { request } from '../utils';
 import { BaseApiPath } from './api';
+import { snakeToCamel, camelToSnake } from '../utils/common';
 
 export enum NetworkType {
   NetworkTypeUnknown = 0,
@@ -42,7 +43,13 @@ export class ApiError extends Error {
 }
 
 export async function requestApi(api: string, body?: any) {
+  if (body) {
+    body = camelToSnake(body);
+  }
   let result: ApiResult = await request(BaseApiPath + api, body);
+  if (result) {
+    result = snakeToCamel(result);
+  }
   if (result.status.code !== 0) {
     throw new ApiError(result.status);
   } else {

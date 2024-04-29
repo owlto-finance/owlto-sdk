@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { snakeToCamel } from './common';
 
 /**
  * Wrapper for fetch
@@ -13,11 +12,12 @@ export async function request(url: string, body?: any) {
       ? await axios.post(url, body, {
           headers: {
             'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
         })
       : await axios.get(url);
 
-    return snakeToCamel(await rsp.data);
+    return await rsp.data;
   } catch (error) {
     throw new Error(
       `http ${url} with ${JSON.stringify(body)} failed, ${error}`
