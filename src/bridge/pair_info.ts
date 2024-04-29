@@ -16,7 +16,15 @@ export interface GetAllPairInfosRequest {
 
 export interface GetAllPairInfosResponse {
   pairInfos: {
-    bridgePair: BridgePair;
+    tokenName: string;
+    fromChainName: string;
+    toChainName: string;
+    fromChainId: string;
+    toChainId: string;
+    fromTokenAddress: string;
+    toTokenAddress: string;
+    fromTokenDecimals: number;
+    toTokenDecimals: number;
     uiMinValue: number;
     uiMaxValue: number;
   }[];

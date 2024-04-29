@@ -15,6 +15,7 @@ export interface GetBuildTxResponse {
   uiSendValue: number;
   uiReceiveValue: number;
   uiGasFee: number;
+  uiBridgeFee: number;
   uiMinValue: number;
   uiMaxValue: number;
   networkType: NetworkType;
