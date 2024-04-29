@@ -16,3 +16,25 @@ export function snakeToCamel(obj: any): any {
   }
   return newObj;
 }
+
+export function camelToSnake(obj: any): any {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map(item => camelToSnake(item));
+  }
+
+  const newObj: any = {};
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const snakeKey = key.replace(
+        /[A-Z]/g,
+        match => `_${match.toLowerCase()}`
+      );
+      newObj[snakeKey] = camelToSnake(obj[key]);
+    }
+  }
+  return newObj;
+}
