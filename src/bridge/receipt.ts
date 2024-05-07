@@ -1,4 +1,4 @@
-import { requestApi } from './common';
+import { BridgeValue, requestApi } from './common';
 import { GetReceiptPath } from './api';
 
 export interface GetReceiptRequest {
@@ -8,6 +8,10 @@ export interface GetReceiptRequest {
 
 export interface GetReceiptResponse {
   toChainHash: string;
+  userSendValue: BridgeValue;
+  userReceiveValue: BridgeValue;
+  fromChainTokenAddress: string;
+  toChainTokenAddress: string;
 }
 
 export class ReceiptManager {

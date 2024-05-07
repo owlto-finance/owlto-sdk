@@ -1,27 +1,28 @@
-import { NetworkType, requestApi } from './common';
+import { BridgeValue, NetworkType, requestApi } from './common';
 import { GetBuildTxPath } from './api';
 
 export interface GetBuildTxRequest {
   tokenName: string;
   fromChainName: string;
   toChainName: string;
-  uiValue: number;
+  uiValue: string;
   fromAddress: string;
   toAddress: string;
   channel: number;
+  valueIncludeGasFee: boolean;
 }
 
 export interface GetBuildTxResponse {
   tokenName: string;
   fromChainName: string;
   toChainName: string;
-  uiInputValue: number;
-  uiSendValue: number;
-  uiReceiveValue: number;
-  uiGasFee: number;
-  uiBridgeFee: number;
-  uiMinValue: number;
-  uiMaxValue: number;
+  inputValue: BridgeValue;
+  sendValue: BridgeValue;
+  receiveValue: BridgeValue;
+  gasFee: BridgeValue;
+  bridgeFee: BridgeValue;
+  minValue: BridgeValue;
+  maxValue: BridgeValue;
   networkType: NetworkType;
   txs: any;
 }
