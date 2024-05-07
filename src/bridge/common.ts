@@ -67,3 +67,9 @@ export interface BridgeSrc {
   chainName: string;
   hash: string;
 }
+
+export interface BridgeValue {
+  rawValue: string;
+  uiValue: string;
+  decimals: number;
+}

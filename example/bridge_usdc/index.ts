@@ -15,7 +15,7 @@ async function main() {
             "USDC", //token name
             "BaseMainnet", //from chain name
             "ScrollMainnet",// to chain name
-            1, // value
+            "1.2", // value
             "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // from address
             "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // to address
         );

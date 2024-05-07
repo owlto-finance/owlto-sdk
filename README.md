@@ -27,7 +27,7 @@ const result = await bridge.getBuildTx(
     "USDC", //token name
     "BaseMainnet", //from chain name
     "ScrollMainnet",// to chain name
-    1, // value
+    "1", // value
     "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // from address
     "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // to address
 );
@@ -67,16 +67,14 @@ const result = await bridge.getBuildTx(
     "USDC", //token name
     "BaseMainnet", //from chain name
     "ScrollMainnet",// to chain name
-    1, // value
+    "1", // value
     "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // from address
     "0xa5E56D455BF247C475D752721Ba35A0c85Df81Dc", // to address
 );
 
 //result:
 {
-  uiFee: 0.1;
-  uiMinValue: 1;
-  uiMaxValue: 300;
+ ...
   networkType: 1; //
   txs: any; //actual transactions need to be sent to from chain, see the following details
 }
@@ -117,17 +115,6 @@ getReceipt get the bridge process status, Throw error if hash is not found, brid
 A pair consists of three component: `token name`, `from chain name`, `to chain name`.
 
 You can only bridge supported pairs
-
-
-## Get fee info
-
-1. `bridge.getFeeInfo(tokenName: string, fromChainName: string, toChainName: string, uiValue: number) `
-
-Return the fee user need to pay for a given pair and amount.
-
-For example, if user want to bridge 10 USDC from Base to Scroll.
-
-The fee may return 1.5, indicate a total value of 11.5 USDC to transfer in the transaction
 
 
 ## Http Api Documentation

@@ -38,7 +38,8 @@ export class Bridge {
   async getPairInfo(
     tokenName: string,
     fromChainName: string,
-    toChainName: string
+    toChainName: string,
+    valueIncludeGasFee: boolean = false
   ) {
     fromChainName = this.getMappedChainName(fromChainName);
     toChainName = this.getMappedChainName(toChainName);
@@ -46,13 +47,18 @@ export class Bridge {
       tokenName: tokenName,
       fromChainName: fromChainName,
       toChainName: toChainName,
+      valueIncludeGasFee: valueIncludeGasFee,
     });
     return result;
   }
 
-  async getAllPairInfos(category?: string) {
+  async getAllPairInfos(
+    category?: string,
+    valueIncludeGasFee: boolean = false
+  ) {
     const result = await this.pairInfoMgr.getAllPairInfos({
       category: category ? category : '',
+      valueIncludeGasFee: valueIncludeGasFee,
     });
     return result;
   }
@@ -79,9 +85,10 @@ export class Bridge {
     tokenName: string,
     fromChainName: string,
     toChainName: string,
-    uiValue: number,
+    uiValue: string,
     fromAddress: string,
-    toAddress: string
+    toAddress: string,
+    valueIncludeGasFee: boolean = false
   ) {
     fromChainName = this.getMappedChainName(fromChainName);
     toChainName = this.getMappedChainName(toChainName);
@@ -89,11 +96,11 @@ export class Bridge {
       tokenName,
       fromChainName,
       toChainName,
-
       uiValue,
       fromAddress,
       toAddress,
       channel: this.options.channel,
+      valueIncludeGasFee: valueIncludeGasFee,
     });
     return result;
   }
