@@ -43,7 +43,7 @@ if (result.txs.approveBody) {
 const tx = await wallet.sendTransaction(result.txs.transferBody as ethers.TransactionRequest);
 await tx.wait(); 
 
-const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
+const receipt = await bridge.waitReceipt(tx.hash)
 console.log(receipt)
 ```
 For more details, check the example/bridge_usdc folder.
