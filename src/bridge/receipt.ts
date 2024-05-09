@@ -2,7 +2,6 @@ import { BridgeValue, requestApi } from './common';
 import { GetReceiptPath } from './api';
 
 export interface GetReceiptRequest {
-  fromChainName: string;
   fromChainHash: string;
 }
 

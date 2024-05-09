@@ -50,7 +50,7 @@ async function main() {
         await tx.wait(); // Wait for the transaction to be mined
         console.log("Transfer Transaction confirmed!");
 
-        const receipt = await bridge.waitReceipt("BaseMainnet", tx.hash)
+        const receipt = await bridge.waitReceipt(tx.hash)
         console.log("cross chain done : ", receipt);
 
     } catch (error) {
