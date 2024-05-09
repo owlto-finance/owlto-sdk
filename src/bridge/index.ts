@@ -105,18 +105,15 @@ export class Bridge {
     return result;
   }
 
-  async getReceipt(fromChainName: string, fromChainHash: string) {
-    fromChainName = this.getMappedChainName(fromChainName);
+  async getReceipt(fromChainHash: string) {
     const result = await this.receiptMgr.getReceipt({
-      fromChainName: fromChainName,
       fromChainHash: fromChainHash,
     });
     return result;
   }
 
   // wait for the bridge result
-  async waitReceipt(fromChainName: string, fromChainHash: string) {
-    fromChainName = this.getMappedChainName(fromChainName);
+  async waitReceipt(fromChainHash: string) {
     const interval = 5000;
     let srcWaitTime = interval * 20;
     while (true) {
@@ -124,7 +121,6 @@ export class Bridge {
       srcWaitTime -= interval;
       try {
         const result = await this.receiptMgr.getReceipt({
-          fromChainName: fromChainName,
           fromChainHash: fromChainHash,
         });
         return result;

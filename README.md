@@ -96,9 +96,9 @@ TODO
 
 ## Get receipt
 
-1. `bridge.waitReceipt(fromChainName: string, fromChainHash: string)`
+1. `bridge.waitReceipt(fromChainHash: string)`
 
-2. `bridge.getReceipt(fromChainName: string, fromChainHash: string)`
+2. `bridge.getReceipt(fromChainHash: string)`
 
 hash is the transfer transaction hash previously describe.
 
