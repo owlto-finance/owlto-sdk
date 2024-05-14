@@ -125,6 +125,7 @@ You can simply called the `bridge.getAllPairInfos()` function(`get_all_pair_info
 
 it will return a list of bridgeable pairs for each supported token
 
+
 ### What does build tx do?
 The `bridge.getBuildTx()` function(`get_build_tx` Http Api) will return all the transactions needed when bridging.
 
@@ -135,6 +136,7 @@ For example, if you bridge USDC from Base to Scroll for the first time, it will 
 2. txs.transferBody, this will actually transfer the USDC token to the Owlto contract on Base chain.
 
 The transactions are in ETH JSON format and are ready to be sent by library like "Ethers".
+
 
 ### Why get receipt return error code?
 The `bridge.getReceipt()` function(`get_receipt` Http Api) will return the status of the bridge process.
