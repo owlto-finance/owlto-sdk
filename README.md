@@ -116,3 +116,30 @@ You can only bridge supported pairs
 ## Http Api Documentation
 
 Please visit: https://owlto.finance/bridge_api/v1/swagger/index.html .
+
+## Q&A
+
+#### How do I know which token can be bridged betwenn which chains?
+You can simply called the `bridge.getAllPairInfos()` function(`get_all_pair_infos` Http Api) 
+
+it will return a list of bridgeable pairs for each supported token
+
+#### What does build tx do?
+The `bridge.getBuildTx()` function(`get_build_tx` Http Api) will return all the transactions needed when bridging.
+
+For example, if you bridge USDC from Base to Scroll for the first time, it will return two transactions in the txs field
+
+1. txs.approveBody, this will let you make an approve to Owlto contract first.
+
+2. txs.transferBody, this will actually transfer the USDC token to the Owlto contract on Base chain.
+
+The transactions are in ETH json format and are ready to be sent by library like "ethers"
+
+#### Why get receipt return error code?
+The `bridge.getReceipt()` function(`get_receipt` Http Api) will return the status of the bridge process.
+
+When it return non zero code, there are typically two case
+
+1. We are not detecting the hash you request, maybe the user failed to send the txs.transferBody or there is a delay
+
+2. The hash you request is found, but the bridge process is still ongoing, you should try again later
