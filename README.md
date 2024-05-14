@@ -139,8 +139,10 @@ The transactions are in ETH JSON format and are ready to be sent by library like
 ### Why get receipt return error code?
 The `bridge.getReceipt()` function(`get_receipt` Http Api) will return the status of the bridge process.
 
-When it return non zero code, there are typically two cases
+When it return non zero code, there are typically three cases
 
-1. We are not detecting the hash you request, maybe the user failed to send the txs.transferBody or there is a delay.
+1. The hash you request is not found, maybe the user failed to send the txs.transferBody or there is a delay.
 
 2. The hash you request is found, but the bridge process is still ongoing, you should try again later.
+
+3. The hash you request is found, but the bridge process failed due to reasons like value out of range.
