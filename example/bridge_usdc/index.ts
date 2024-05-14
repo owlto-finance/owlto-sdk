@@ -4,9 +4,7 @@ import * as owlto from "owlto-sdk";
 import * as ethers from "ethers";
 
 async function main() {
-    const options: owlto.BridgeOptions = {
-        channel: 910325  // your channel id
-    }
+    const options: owlto.BridgeOptions = {}
 
     let bridge = new owlto.Bridge(options);
 

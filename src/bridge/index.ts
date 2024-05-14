@@ -6,7 +6,7 @@ import { BuildTxManager } from './build_tx';
 import { sleep } from '../utils';
 
 export interface BridgeOptions {
-  channel: number;
+  channel?: number;
   chainNameMapping?: Map<string, string>;
 }
 
@@ -99,7 +99,7 @@ export class Bridge {
       uiValue,
       fromAddress,
       toAddress,
-      channel: this.options.channel,
+      channel: this.options.channel ?? 0 ,
       valueIncludeGasFee: valueIncludeGasFee,
     });
     return result;

@@ -18,9 +18,7 @@ For example, to bridge USDC from Base to Scroll
 ```TypeScript
 import * as owlto from "owlto-sdk";
 
-const options: owlto.BridgeOptions = {
-    channel: 910325  // your channel id
-}
+const options: owlto.BridgeOptions = {}
 let bridge = new owlto.Bridge(options);
 
 const result = await bridge.getBuildTx(
@@ -51,9 +49,7 @@ For more details, check the example/bridge_usdc folder.
 
 ## Bridge options
 
-### 1.channel (number | required)
-Your identification for revenue share.
-### 2.chainNameMapping (Map<string, string> | optional) 
+### 1.chainNameMapping (Map<string, string> | optional) 
 Map your chain names to Owlto chain names.
 
 For example, if you named Base Mainnet as "Base", you can set `chainNameMapping["Base"] = "BaseMainnet"`.
