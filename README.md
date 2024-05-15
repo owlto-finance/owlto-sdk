@@ -1,6 +1,6 @@
-# owlto-sdk
+# Owlto SDK
 
-Owlto-Sdk is a library used to bridge token between multiple chains
+If you are Aggregators, Cross-Chain Swap, DEX, etc., you can choose to install Owlto-SDK as your underlying solution to achieve cross-chain functionality between different networks.
 
 ## Install
 ```bash
@@ -50,11 +50,11 @@ For more details, check the example/bridge_usdc folder.
 ## Bridge options
 
 ### 1.chainNameMapping (Map<string, string> | optional) 
-Map your chain names to Owlto chain names.
+Map your the chain names from your protocol with Owlto.
 
-For example, if you named Base Mainnet as "Base", you can set `chainNameMapping["Base"] = "BaseMainnet"`.
+For example, if the chain name of Base Mainnet on your protocol is "Base", you can set  `chainNameMapping["Base"] = "BaseMainnet"`.
 
-Then you can use "Base" as chain name in every function of bridge.
+Then you can run functions with chain name as "Base" in order to proceed with a bridge.
 
 
 ## Get build tx
@@ -84,10 +84,10 @@ The txs contains the transactions user should send to `from chain` when bridging
     The actual transfer transaction.
 
 #### 2.Starknet
-TODO
+Coming Soon
 
 #### 3.Solana
-TODO
+Coming Soon
 
 
 ## Get receipt
@@ -96,11 +96,15 @@ TODO
 
 2. `bridge.getReceipt(fromChainHash: string)`
 
-hash is the transfer transaction hash previously describe.
+`fromChainHash` is the hash value of the transfer transaction.
 
-waitReceipt wait for the bridge process to be done. Throw error if the hash is not found for 1 minute or failed
+waitReceipt refers to waiting for the Bridge process to complete. 
 
-getReceipt get the bridge process status, Throw error if hash is not found, bridge in progress or failed.
+If the transaction is not completed within 1 minute (usually due to not finding the hash value or failure), the transaction error message will be displayed.
+
+getReceipt refers to get the bridge transaction status
+
+If `fromChainHash` is not found, bridge is in progress or failed, the transaction error message will be displayed.
 
 ## Get pair info
 
@@ -108,38 +112,38 @@ getReceipt get the bridge process status, Throw error if hash is not found, brid
 
 2. `bridge.getAllPairInfos()`
 
-A pair consists of three component: `token name`, `from chain name`, `to chain name`.
+A pair consists of three components: `token name`, `from chain name`, `to chain name`.
 
 You can only bridge supported pairs
 
 
-## Http Api Documentation
+## HTTP API Documentation
 
 Please visit: https://owlto.finance/bridge_api/v1/swagger/index.html .
 
 
 ## Q&A
 
-### How do I know which token can be bridged between which chains?
-You can simply called the `bridge.getAllPairInfos()` function(`get_all_pair_infos` Http Api) 
+### How do I know which tokens can be bridged between selected chains?
+You can simply called the `bridge.getAllPairInfos()` function(`get_all_pair_infos` HTTP API) 
 
-it will return a list of bridgeable pairs for each supported token
+it will return a list of pairs for each supported tokens can be bridged.
 
 
 ### What does build tx do?
-The `bridge.getBuildTx()` function(`get_build_tx` Http Api) will return all the transactions needed when bridging.
+The `bridge.getBuildTx()` function(`get_build_tx` HTTP API) will return all the transactions needed when bridging.
 
 For example, if you bridge USDC from Base to Scroll for the first time, it will return two transactions in the txs field
 
-1. txs.approveBody, this will let you make an approve to Owlto contract first.(Will be null if the allowance is enough)
+1. `txs.approveBody`, lets you to approve Owlto smart contract .(null will be generated if the spending cap is enough)
 
-2. txs.transferBody, this will actually transfer the USDC token to the Owlto contract on Base chain.
+2. `txs.transferBody`, transfer amount of the USDC token to be bridged.
 
 The transactions are in ETH JSON format and are ready to be sent by library like "Ethers".
 
 
-### Why get receipt return error code?
-The `bridge.getReceipt()` function(`get_receipt` Http Api) will return the status of the bridge process.
+### Why getReceipt () returns error?
+The `bridge.getReceipt()` function(`get_receipt` HTTP API) will return the status of the bridge process.
 
 When it return non zero code, there are typically three cases
 
