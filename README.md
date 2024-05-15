@@ -98,13 +98,13 @@ Coming Soon
 
 `fromChainHash` is the hash value of the transfer transaction.
 
-waitReceipt refers to waiting for the Bridge process to complete. 
+`waitReceipt` refers to waiting for the bridge process to complete. 
 
-If the transaction is not completed within 1 minute (usually due to not finding the hash value or failure), the transaction error message will be displayed.
+If the bridge process is not completed within 1 minute (usually due to not finding the hash value or failure), error message will be displayed.
 
-getReceipt refers to get the status of a bridge request.
+`getReceipt` refers to get the status of a bridge process.
 
-If `fromChainHash` is not found, bridge is in progress or failed, the transaction error message will be displayed.
+If `fromChainHash` is not found, bridge is in progress or failed, error message will be displayed.
 
 ## Get pair info
 
