@@ -133,7 +133,7 @@ It will return a list of pairs for each supported tokens can be bridged.
 ### What does build tx do?
 The `bridge.getBuildTx()` function(`get_build_tx` HTTP API) will return all the transactions needed when bridging.
 
-For example, if you bridge USDC from Base to Scroll for the first time, it will return two transactions in the txs field.
+For example, if you bridge USDC from Base to Scroll, it will return two transactions in the txs field.
 
 1. `txs.approveBody`, approve to Owlto smart contract.(will be null if the allowance is enough)
 
