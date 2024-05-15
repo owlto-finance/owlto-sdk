@@ -135,9 +135,9 @@ The `bridge.getBuildTx()` function(`get_build_tx` HTTP API) will return all the 
 
 For example, if you bridge USDC from Base to Scroll for the first time, it will return two transactions in the txs field.
 
-1. `txs.approveBody`, lets you to approve Owlto smart contract .(null will be generated if the spending cap is enough)
+1. `txs.approveBody`, approve to Owlto smart contract.(will be null if the allowance is enough)
 
-2. `txs.transferBody`, transfer amount of the USDC token to be bridged.
+2. `txs.transferBody`, transfer the USDC token to Owlto smart contract on Base chain.
 
 The transactions are in ETH JSON format and are ready to be sent by library like "Ethers".
 
