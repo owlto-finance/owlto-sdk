@@ -102,7 +102,7 @@ waitReceipt refers to waiting for the Bridge process to complete.
 
 If the transaction is not completed within 1 minute (usually due to not finding the hash value or failure), the transaction error message will be displayed.
 
-getReceipt refers to get the bridge transaction status
+getReceipt refers to get the status of a bridge request.
 
 If `fromChainHash` is not found, bridge is in progress or failed, the transaction error message will be displayed.
 
@@ -125,15 +125,15 @@ Please visit: https://owlto.finance/bridge_api/v1/swagger/index.html .
 ## Q&A
 
 ### How do I know which tokens can be bridged between selected chains?
-You can simply called the `bridge.getAllPairInfos()` function(`get_all_pair_infos` HTTP API) 
+You can simply called the `bridge.getAllPairInfos()` function.(`get_all_pair_infos` HTTP API) 
 
-it will return a list of pairs for each supported tokens can be bridged.
+It will return a list of pairs for each supported tokens can be bridged.
 
 
 ### What does build tx do?
 The `bridge.getBuildTx()` function(`get_build_tx` HTTP API) will return all the transactions needed when bridging.
 
-For example, if you bridge USDC from Base to Scroll for the first time, it will return two transactions in the txs field
+For example, if you bridge USDC from Base to Scroll for the first time, it will return two transactions in the txs field.
 
 1. `txs.approveBody`, lets you to approve Owlto smart contract .(null will be generated if the spending cap is enough)
 
