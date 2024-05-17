@@ -120,7 +120,7 @@ You can only bridge supported pairs
 ## HTTP API Documentation
 The URL path for API: https://owlto.finance/api/bridge_api/v1/{API}
 
-Please visit for documentation: https://owlto.finance/bridge_api/v1/swagger/index.html .
+Documentation: https://owlto.finance/bridge_api/v1/swagger/index.html
 
 
 ## Q&A
